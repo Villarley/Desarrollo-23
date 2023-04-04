@@ -1,0 +1,22 @@
+{
+    "name": "cine",
+    "version": "0.0.1",
+    "description": "Cine Cedes",
+    "main": "server.js",
+    "author": "Santiago Villarreal Arley11c",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "express": "^3.21.2",
+        "mongoose": "~5.11.19",
+        "multer": "~0.1.6",
+        "nodemailer": "^5.1.1"
+    },
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
+}

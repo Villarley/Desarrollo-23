@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  </head>
+  <body>
+    <div class="BigContainer">
+      <div class="container1">
+
+        <div class="container" id="container">
+            .
+            <!-- <div class="post">
+              <h2>Título del Post</h2>
+              <div class="img">
+                <img src="cami" alt="Imagen del Post"/>
+              </div>
+                <p>Colores:</p>
+                <ul>
+                  <li>Azul</li>
+                  <li>Verde</li>
+                  <li>Rojo</li>
+                </ul>
+                <button class="svg" onclick="subirlike()">
+                    <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+        <g>
+            <path d="M50,91.5C50,91.5,50,91.5,50,91.5c-0.8,0-1.6-0.3-2.2-0.9L8.5,51.1c-4.9-4.8-7.5-11.6-7.3-18.7c0.4-7.1,3.7-13.8,9.1-18.4
+                c4.5-3.6,9.9-5.5,15.6-5.5c6.9,0,13.7,2.8,18.6,7.7l5.5,5.5l5.5-5.4c9.6-9.6,24.3-10.5,34.2-2c5.4,4.3,8.7,10.8,9.1,17.9
+                c0.4,7.1-2.3,14.1-7.3,19.1L52.1,90.7C51.6,91.2,50.8,91.5,50,91.5z M48.6,87.1C48.6,87.1,48.6,87.1,48.6,87.1L48.6,87.1z
+                 M25.9,13.5c-4.6,0-8.9,1.5-12.5,4.4c-4.3,3.7-7,9-7.3,14.7C6,38.3,8.1,43.7,12,47.5l38,38.2l38-38c4-4,6.1-9.7,5.8-15.3
+                c-0.3-5.6-2.9-10.8-7.3-14.3c-7.9-6.8-19.7-6.1-27.5,1.7l-9,8.9l-9-9C37.1,15.7,31.5,13.5,25.9,13.5z"/>
+        </g>
+        </svg>
+                <span>10</span>
+                </button>
+              </div>          -->
+  
+      </div>
+                <div class="btn-add"><button class="submit-task" id="submit-btn" onclick="show()"></button></div>
+      </div>
+  </body>
+  <script src="/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    const submitBtn = document.getElementById("submit-btn");
+
+submitBtn.addEventListener("click", () => {
+  // Hacer clic en el botón activa la animación
+  submitBtn.classList.add("clicked");
+  // document.getElementsByClassName('swal2-popup').cl
+});
+      let imagenBase64 = '';
+function show(){
+    Swal.fire({
+        html: 
+        '<div class="parent animate__fadeInBottomRight">'+
+            '<div class="group child" ><input type="text"  name="" id="Nombre" placeholder="Nombre"><span class="highlight"></span><span class="bar"></span></div>'+
+            ''+
+            '<div class="group child"><input type="text" class="child" name="" id="Color1" placeholder="Color1"><span class="highlight"></span><span class="bar"></span></div>'+
+            '<div class="group child" ><input type="text" class="child" name="" id="Color2" placeholder="Color2"><span class="highlight"></span><span class="bar"></span></div>'+
+            '<div class="group child" ><input type="text" class="child" name="" id="Color3" placeholder="Color3"><span class="highlight"></span><span class="bar"></span></div>'+
+            '    <div class="upload-btn-wrapper child2"><button class="btn">Seleccionar imagen</button><input type="file"  name="" id="Imagen" ></div>'+
+              '</div>'+
+              '<button class="bot" style="margin-top: 1vh; margin: auto;" onclick="Guardar()">Guardar camisa</button>',
+        focusConfirm: false,
+        showConfirmButton: false,
+        showCloseButton: false
+    });
+}
+
+function Guardar(){ 
+    const inputImagen = document.getElementById('Imagen');
+    const imagen = inputImagen.files[0];
+    convertirImagenABase64(imagen, function(imagenBase64) {
+        console.log(imagenBase64);
+        let likes = 0;
+        let nombre = document.getElementById('Nombre').value;
+        let camisainstanciada = new Camisa(0,
+            nombre,
+            document.getElementById("Color1").value,
+            document.getElementById("Color2").value,
+            document.getElementById("Color3").value,
+            likes,
+            imagenBase64
+        );
+        console.log(camisainstanciada);
+        camisainstanciada.Guardar().then(function(response){
+            console.log("Success", response);
+            alert("Guardado con éxito");
+        }, function(error){
+            console.log("Error", error);
+            alert("Error", error);
+        });
+      });
+      
+      function convertirImagenABase64(imagen, callback) {
+          const reader = new FileReader();
+          reader.addEventListener('load', () => {
+              const base64 = reader.result;
+              callback(base64);
+          });
+          reader.readAsDataURL(imagen);
+      }
+}
+
+
+
+
+  // setInterval(post(), 10000);
+ (function() {
+    var camisainstanciada = new Camisa();
+    camisainstanciada.Seleccionartodos().then(function(response){
+      for(var ele in response){
+        document.getElementById('container').innerHTML +=
+        "<div class='post'>"+
+          "<h2>"+
+            response[ele].NOMBRE + "</h2>"+
+            "<div class='img'>"+
+              "<img src='"+
+              response[ele].IMAGEN+
+              "' alt='Imagen del Post'/></div>"+
+              "<p>Colores:</p><ul>"+
+                "<li>"+ response[ele].COLOR1+"</li>"+
+                "<li>"+ response[ele].COLOR2+"</li>"+
+                "<li>"+ response[ele].COLOR3+"</li>"+
+                "</ul>"+
+                '<button class="svg" onclick="subirlike(\''+ 
+                                    response[ele]._id +'\')"><svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><path d="M50,91.5C50,91.5,50,91.5,50,91.5c-0.8,0-1.6-0.3-2.2-0.9L8.5,51.1c-4.9-4.8-7.5-11.6-7.3-18.7c0.4-7.1,3.7-13.8,9.1-18.4c4.5-3.6,9.9-5.5,15.6-5.5c6.9,0,13.7,2.8,18.6,7.7l5.5,5.5l5.5-5.4c9.6-9.6,24.3-10.5,34.2-2c5.4,4.3,8.7,10.8,9.1,17.9c0.4,7.1-2.3,14.1-7.3,19.1L52.1,90.7C51.6,91.2,50.8,91.5,50,91.5z M48.6,87.1C48.6,87.1,48.6,87.1,48.6,87.1L48.6,87.1zM25.9,13.5c-4.6,0-8.9,1.5-12.5,4.4c-4.3,3.7-7,9-7.3,14.7C6,38.3,8.1,43.7,12,47.5l38,38.2l38-38c4-4,6.1-9.7,5.8-15.3c-0.3-5.6-2.9-10.8-7.3-14.3c-7.9-6.8-19.7-6.1-27.5,1.7l-9,8.9l-9-9C37.1,15.7,31.5,13.5,25.9,13.5z"/></g></svg>'+
+                "<span>"+response[ele].LIKES+"</span>"+
+                "</button></div>"
+      }
+    }, function(error){
+            console.error('failed', error);
+            alert("Error"+error);
+        })
+  })();
+  </script>
+  <script>
+    let likes = 0;
+let color1 = "";
+let color2 = "";
+let color3 = "";
+let imagen = "";
+let a = 0;
+
+function subirlike(idenmongo) {
+  var updatedLikes = 0; // Inicializar a para este botón específico
+  var camisainstanciada = new Camisa(idenmongo, color1, color2, color3, likes, imagen);
+  camisainstanciada.Seleccionarporid().then(function(response) {
+    updatedLikes = response[0].LIKES;
+    if (a % 2 === 0) { // si es par, sumar likes
+      updatedLikes++;
+      a++;
+    } else { // si es impar, restar likes
+      updatedLikes--;
+      a++;
+    }
+    camisainstanciada.LIKES = updatedLikes;
+    camisainstanciada.ActualizarLikes().then(function(response) {
+      
+      console.log(response);
+      camisainstanciada.Seleccionarporid().then(function(response) {
+
+        document.querySelector(`button[onclick="subirlike('${idenmongo}')"] span`).textContent = response[0].LIKES;
+      }).catch(function(error) {
+        console.error('failed to update likes', error);
+        alert('Error al actualizar los likes');
+      });
+    }).catch(function(error) {
+      console.error('failed to get camisa by id', error);
+      alert('Error al obtener la camisa');
+    });
+  })
+}
+
+  </script>
+</html>
