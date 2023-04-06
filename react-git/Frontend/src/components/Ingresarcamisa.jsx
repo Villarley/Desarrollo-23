@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import Style from "./css/style.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import withReactContent from 'sweetalert2-react-content'
+import Filadecamisas from './filadecamisas'
 const MySwal = withReactContent(Swal);
 class Form extends Component {
     state ={
@@ -24,13 +25,16 @@ class Form extends Component {
 
       render() {
         if (this.state.camisasactuales == null) return "cargando"
-
+          else
+          console.log(this.state.camisasactuales);
           return (<React.Fragment>
                   <div className="BigContainer">
         <div className="container1">
 
           <div className="container" id="container">
-            {null}
+            {this.state.camisasactuales.map(op => <Filadecamisas 
+            nombre = {op.NOMBRE} imagen = {op.IMAGEN} color1 = {op.COLOR1}
+            color2= {op.COLOR2} color3= {op.COLOR3} likes = {op.LIKES} id = {op._id}  eliminarcupon={this.eliminarcupon}  productos={op.productos}/>)}
         </div>
                   <div className="btn-add"><button className="submit-task" id="submit-btn" onClick={(evt) => this.Show(evt)}></button></div>
                   <div className="btn-add"><button className="submit-task" id="submit-btn" onClick={(evt) => this.obtenercamisa(evt)}></button></div>
@@ -205,6 +209,7 @@ class Form extends Component {
 // ``        // this.setState.camisasactuales = this.obtenercamisa();
 //         // console.log(camisasactuales);``
 //     }
+
 }
     
 

@@ -68,7 +68,8 @@ exports.Seleccionartodos = function(req, res) {
         });
     };
 exports.ActualizarLikes = function(req, res) {
-    var updatedLikes = req.body.LIKES || 0;
+    var updatedLikes = req.body.LIKES || 0  ;
+    console.log(updatedLikes);
     Item.update({ _id: req.body.id }, { $set: { LIKES: updatedLikes } }, function(err, item) {
       if (err) {
         res.send(err);
