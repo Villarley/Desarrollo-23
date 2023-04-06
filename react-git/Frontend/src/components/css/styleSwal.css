@@ -1,0 +1,72 @@
+/* Estilos generales */
+.swal2-popup {
+    font-family: sans-serif;
+    border-radius: 5px;
+    box-shadow: 0 0 20px var(--color-sombra);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+  }
+  
+  .swal2-icon {
+    border-color: var(--color-primario);
+  }
+  
+  .swal2-icon i {
+    color: var(--color-primario);
+  }
+  
+  .swal2-title {
+    font-size: 1.5rem;
+    color: var(--color-texto-principal);
+  }
+  
+  .swal2-content {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+  }
+  
+  .swal2-actions button {
+    font-size: 1rem;
+    color: var(--color-texto-principal);
+    background-color: var(--boton);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+  }
+  
+  .swal2-actions button:hover {
+    background-color: var(--color-secundario);
+  }
+  
+  .swal2-actions button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-borde);
+  }
+  
+  /* Estilos específicos para la alerta de éxito */
+  .swal2-success {
+    border-color: var(--color-secundario);
+  }
+  
+  .swal2-success .swal2-icon i {
+    color: var(--color-secundario);
+  }
+  
+  .swal2-success .swal2-title {
+    color: var(--color-secundario);
+  }
+  
+  /* Estilos específicos para la alerta de error */
+  .swal2-error {
+    border-color: var(--color-terciario);
+  }
+  
+  .swal2-error .swal2-icon i {
+    color: var(--color-terciario);
+  }
+  
+  .swal2-error .swal2-title {
+    color: var(--color-terciario);
+  }

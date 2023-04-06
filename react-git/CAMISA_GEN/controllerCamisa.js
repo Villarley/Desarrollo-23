@@ -74,7 +74,7 @@ exports.ActualizarLikes = function(req, res) {
       if (err) {
         res.send(err);
       } else {
-        Item.find(function(err, item) {
+        Item.find({_id : req.body.id}, function(err, item) {
           if (err) {
             res.send(err);
           }

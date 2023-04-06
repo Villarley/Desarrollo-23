@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOMServer from 'react-dom/server';
 import Swal from "sweetalert2";
+import StyleSwal from './css/styleSwal.css'
 import Style from "./css/style.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import withReactContent from 'sweetalert2-react-content'
@@ -37,7 +38,7 @@ class Form extends Component {
             color2= {op.COLOR2} color3= {op.COLOR3} likes = {op.LIKES} id = {op._id}  eliminarcupon={this.eliminarcupon}  productos={op.productos}/>)}
         </div>
                   <div className="btn-add"><button className="submit-task" id="submit-btn" onClick={(evt) => this.Show(evt)}></button></div>
-                  <div className="btn-add"><button className="submit-task" id="submit-btn" onClick={(evt) => this.obtenercamisa(evt)}></button></div>
+                  {/* <div className="btn-add"><button className="submit-task" id="submit-btn" onClick={(evt) => this.obtenercamisa(evt)}></button></div> */}
         </div>
         </div>
         
@@ -176,7 +177,7 @@ class Form extends Component {
                console.log(camisa)
            
           // this.setState({combosactuales: recipes})
-            alert("Guardado");
+            // alert("Guardado");
             });
     }
     obtenercamisa = () => {
@@ -202,7 +203,7 @@ class Form extends Component {
               //  return camisa;
            
           // this.setState({combosactuales: recipes})
-            alert("Guardado");
+            // alert("Guardado");
             });
     }
 //     renderPosts(){
