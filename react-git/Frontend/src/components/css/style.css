@@ -27,26 +27,35 @@
     justify-content: end;
     flex-wrap: nowrap;
     background-color: var(--color-primario);
+    background-color: darkgray;
+    background-color: var(--color-fondo);
     flex-direction: column;
   }
   .container {
     display: flex;
+    display: grid;
+    grid-template-columns:  auto;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     background-color: var(--color-primario);
+    background-color: darkgray;
+    background-color: var(--color-fondo);
     flex-direction: column;
+    margin-top: 1vh;
   }
   .img {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 300px;
   }
 
   .post {
     /* background-color: var(--color-texto-principal); */
     background-color: var(--color-texto-principal);
-    width: 300px;
+    /* width: 300px; */
     padding: 20px;
     border-radius: 30px;
     /* border: 1px solid var(--color-borde); */
@@ -58,6 +67,7 @@
     /* ); Chrome 10-25, Safari 5.1-6 */
     /* background: var(--color-gradient); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     box-shadow: 2px 2px 4px var(--color-sombra);
+    height: 610px;
   }
 
   h2 {
@@ -87,6 +97,7 @@
     width: 100%;
     border: solid 2px var(--color-borde);
     border-radius: 15px;
+    height: 420PX;
   }
 
   ul {
@@ -332,11 +343,22 @@
     transform: translateY(50px);
     opacity: 0;
   }
-  ::-webkit-scrollbar-thumb {
-    background: #000;
+  ::-webkit-scrollbar {
+    width: 10px; /* ancho de la scrollbar */
+    height: 100px; /* altura de la scrollbar */
   }
   
-  /* Handle on hover */
+  /* color del fondo de la scrollbar */
+  ::-webkit-scrollbar-track {
+    background-color: whitesmoke;
+  }
+  /* color del "pulgar" o handle de la scrollbar */
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-terciario);
+    border-radius: 10px;
+  }
+  
+  /* color del "pulgar" cuando se está moviendo */
   ::-webkit-scrollbar-thumb:hover {
-    background: #fff;
+    background-color: #555;
   }

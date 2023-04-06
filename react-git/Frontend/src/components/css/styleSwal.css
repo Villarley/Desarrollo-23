@@ -1,72 +1,102 @@
-/* Estilos generales */
-.swal2-popup {
-    font-family: sans-serif;
-    border-radius: 5px;
-    box-shadow: 0 0 20px var(--color-sombra);
+.swal2-modal{
     background-color: var(--color-fondo);
+    border-radius: 30px;
+}
+.my-modal {
+    background-color: var(--color-fondo);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+    padding: 1vh;
+    }
+    
+    .my-modal-header {
+    font-size: 24px;
     color: var(--color-texto-principal);
-  }
-  
-  .swal2-icon {
-    border-color: var(--color-primario);
-  }
-  
-  .swal2-icon i {
-    color: var(--color-primario);
-  }
-  
-  .swal2-title {
-    font-size: 1.5rem;
-    color: var(--color-texto-principal);
-  }
-  
-  .swal2-content {
-    font-size: 1.2rem;
-    color: var(--color-texto-secundario);
-  }
-  
-  .swal2-actions button {
-    font-size: 1rem;
-    color: var(--color-texto-principal);
-    background-color: var(--boton);
+    margin-bottom: 20px;
+    }
+    
+    .my-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+    
+    .my-modal-input-group {
+    position: relative;
+    }
+    
+    .my-modal-input {
     border: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
-  }
-  
-  .swal2-actions button:hover {
-    background-color: var(--color-secundario);
-  }
-  
-  .swal2-actions button:focus {
+    border-bottom: 2px solid var(--color-secundario);
+    background-color: transparent;
+    color: var(--color-texto-principal);
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    }
+    
+    .my-modal-input:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--color-borde);
-  }
-  
-  /* Estilos específicos para la alerta de éxito */
-  .swal2-success {
-    border-color: var(--color-secundario);
-  }
-  
-  .swal2-success .swal2-icon i {
+    }
+    
+    .my-modal-input-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
     color: var(--color-secundario);
-  }
-  
-  .swal2-success .swal2-title {
-    color: var(--color-secundario);
-  }
-  
-  /* Estilos específicos para la alerta de error */
-  .swal2-error {
-    border-color: var(--color-terciario);
-  }
-  
-  .swal2-error .swal2-icon i {
-    color: var(--color-terciario);
-  }
-  
-  .swal2-error .swal2-title {
-    color: var(--color-terciario);
-  }
+    pointer-events: none;
+    transition: 0.2s ease all;
+    }
+    
+    .my-modal-input:focus ~ .my-modal-input-label,
+    .my-modal-input:not(:placeholder-shown) ~ .my-modal-input-label {
+    top: -10px;
+    left: -5px;
+    font-size: 12px;
+    color: var(--color-texto-principal);
+    background-color: var(--color-fondo);
+    padding: 0 5px;
+    }
+    
+    .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    }
+    
+    .my-btn-secondary {
+    background-color: var(--color-fondo);
+    border: 2px solid var(--color-secundario);
+    color: var(--color-texto-principal);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease all;
+    }
+    
+    .my-btn-secondary:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-fondo);
+    }
+    
+    .my-btn-primary {
+    background-color: var(--color-secundario);
+    border: none;
+    color: var(--color-fondo);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease all;
+    margin-top: 1vh;
+    }
+    
+    .my-btn-primary:hover {
+    background-color: var(--color-terciario);
+    }

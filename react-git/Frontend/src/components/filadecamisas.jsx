@@ -20,7 +20,7 @@ class Filadelatabladecamisas extends Component{
             <div className="post">
                 <h2>{this.state.CAMISA.NOMBRE}</h2>
                 <div className="img">
-                    <img src={this.state.CAMISA.IMAGEN} alt="" />
+                    <img src={this.state.CAMISA.IMAGEN} alt="" onDoubleClick={() => this.actualizarlike(this.state.CAMISA.ID, this.state.CAMISA.LIKES, this.state.CAMISA.LIKED)}/>
                 </div>
                 <p>Colores:</p><ul>
                 <li>{this.state.CAMISA.COLOR1}</li>
