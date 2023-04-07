@@ -37,7 +37,7 @@ class Filadelatabladecamisas extends Component {
                   this.state.CAMISA.ID,
                   this.state.CAMISA.LIKES,
                   this.state.CAMISA.LIKED
-                );
+                ); this.mostrarCorazon()
               }}
             />
             {CAMISA.SHOW_HEART && (
@@ -91,7 +91,6 @@ class Filadelatabladecamisas extends Component {
   }
 
   actualizarlike(idenmongo, likes, liked) {
-    this.mostrarCorazon();
     if (this.state.CAMISA.LIKED === false) {
       likes++;
       this.setState({ CAMISA: { ...this.state.CAMISA, LIKED: true } });
@@ -122,6 +121,7 @@ class Filadelatabladecamisas extends Component {
           CAMISA: {
             ...prevState.CAMISA,
             LIKES: likes[0].LIKES,
+            SHOW_HEART: true,
           },
         }));
 
