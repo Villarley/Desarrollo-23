@@ -70,6 +70,8 @@ class Filadelatabladecamisas extends Component {
             }
           >
             <svg
+              fill="black"
+              fill-opacity="1"
               version="1.1"
               id="Layer_2"
               xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +123,7 @@ class Filadelatabladecamisas extends Component {
           CAMISA: {
             ...prevState.CAMISA,
             LIKES: likes[0].LIKES,
-            SHOW_HEART: true,
+            // SHOW_HEART: true,
           },
         }));
 
@@ -132,12 +134,12 @@ class Filadelatabladecamisas extends Component {
         //   alert("Guardado");
       });
   }
-  mostrarCorazon = () => {
-    this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: true } });
-    setTimeout(() => {
-      this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: false } });
-    }, 1000);
-  }
+  // mostrarCorazon = () => {
+  //   this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: true } });
+  //   setTimeout(() => {
+  //     this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: false } });
+  //   }, 1000);
+  // }
   // actualizarlie = () => {
   //     // With all properties
   //    var objetolocal = this.state.CAMISA
