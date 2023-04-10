@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import loadercss from "./css/loader.css"
-class loader extends Component {
+import "./css/loader.css"; // Importa el archivo CSS
+class Loader extends Component {
   render() {
     return (
-      <div class="content">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+        <React.Fragment>
+      <div className="content"> {/* Usa className en lugar de class */}
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
       </div>
+        </React.Fragment>
     );
   }
 }
-export default loader;
+export default Loader;

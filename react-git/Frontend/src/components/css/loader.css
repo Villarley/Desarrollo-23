@@ -2,17 +2,15 @@
 	--sp: 2.5s; /* change speed */
 }		
 
-/* body {
+body {
 	margin: 0;
 	padding: 0;
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
+	/* width: 100vw;
+	height: 100vh; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: radial-gradient(#222, #101010);
-} */
+}
 
 .content {
 	width: 50vmin;
