@@ -352,8 +352,8 @@
   .heart {
     position: absolute;
     z-index: 999;
-    top: 30%;
-    left: 50%;
+    /* top: 100%;
+    left: 50%; */
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     transition: all 0.3s ease-out;

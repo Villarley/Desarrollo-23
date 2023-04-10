@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import StyleSwal from "./css/styleSwal.css";
 import Style from "./css/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import loader from './loader';
 import withReactContent from "sweetalert2-react-content";
 import Filadecamisas from "./filadecamisas";
 const MySwal = withReactContent(Swal);
@@ -24,7 +25,7 @@ class Form extends Component {
   }
 
   render() {
-    if (this.state.camisasactuales == null) return "cargando";
+    if (this.state.camisasactuales == null) return <loader/>;
     else console.log(this.state.camisasactuales);
     return (
       <React.Fragment>

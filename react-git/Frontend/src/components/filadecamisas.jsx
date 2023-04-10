@@ -134,12 +134,20 @@ class Filadelatabladecamisas extends Component {
         //   alert("Guardado");
       });
   }
-  // mostrarCorazon = () => {
-  //   this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: true } });
-  //   setTimeout(() => {
-  //     this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: false } });
-  //   }, 1000);
-  // }
+  mostrarCorazon = () => {
+    if(this.state.CAMISA.LIKED){
+      this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: true } });
+      setTimeout(() => {
+        this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: false, LIKED: false } });
+      }, 1000);
+    }
+    else{
+      this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: true } });
+      setTimeout(() => {
+        this.setState({ CAMISA: { ...this.state.CAMISA, SHOW_HEART: false, LIKED: true } });
+      }, 3000);
+    }
+  }
   // actualizarlie = () => {
   //     // With all properties
   //    var objetolocal = this.state.CAMISA
