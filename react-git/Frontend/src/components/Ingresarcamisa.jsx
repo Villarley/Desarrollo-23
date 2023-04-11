@@ -67,6 +67,7 @@ class Form extends Component {
           <div className="my-modal-content">
             <div className="my-modal-input-group">
               <input
+                id="Nombre"
                 type="text"
                 className="my-modal-input"
                 placeholder="Nombre"
@@ -76,6 +77,7 @@ class Form extends Component {
 
             <div className="my-modal-input-group">
               <input
+                id="Color1"
                 type="text"
                 className="my-modal-input"
                 placeholder="Color 1"
@@ -85,6 +87,7 @@ class Form extends Component {
 
             <div className="my-modal-input-group">
               <input
+                id="Color2"
                 type="text"
                 className="my-modal-input"
                 placeholder="Color 2"
@@ -94,6 +97,7 @@ class Form extends Component {
 
             <div className="my-modal-input-group">
               <input
+                id="Color3"
                 type="text"
                 className="my-modal-input"
                 placeholder="Color 3"
@@ -150,12 +154,13 @@ class Form extends Component {
     console.log(e);
   };
   actualizardatosguardar(evt) {
-    console.log("Hola");
     var objetolocalcamisa = new Object();
 
     objetolocalcamisa = this.state.CAMISA;
+    console.log(objetolocalcamisa);
     switch (evt.target.id) {
       case "Nombre": {
+        console.log(evt.target.value);
         console.log(this.state.CAMISA);
         objetolocalcamisa.NOMBRE = evt.target.value;
         console.log(objetolocalcamisa.NOMBRE);
@@ -163,20 +168,20 @@ class Form extends Component {
       }
       case "Color1": {
         console.log(this.state.CAMISA);
-        objetolocalcamisa.APELLIDO = evt.target.value;
-        console.log(objetolocalcamisa.APELLIDO);
+        objetolocalcamisa.COLOR1 = evt.target.value;
+        console.log(objetolocalcamisa.COLOR1);
         break;
       }
       case "Color2": {
         console.log(this.state.CAMISA);
-        objetolocalcamisa.EMAIL = evt.target.value;
-        console.log(objetolocalcamisa.EMAIL);
+        objetolocalcamisa.COLOR2 = evt.target.value;
+        console.log(objetolocalcamisa.COLOR2);
         break;
       }
       case "Color3": {
         console.log(this.state.CAMISA);
-        objetolocalcamisa.TIPOUSUARIO = evt.target.value;
-        console.log(objetolocalcamisa.TIPOUSUARIO);
+        objetolocalcamisa.COLOR3 = evt.target.value;
+        console.log(objetolocalcamisa.COLOR3);
         break;
       }
     }

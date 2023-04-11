@@ -12,12 +12,13 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <LogIn/>
+    {/* <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<LogIn/>} />
         <Route exact path="/Main" element={<Form />} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
   </React.StrictMode>
 );
 
