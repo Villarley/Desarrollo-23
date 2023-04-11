@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Animated} from "react-animated-css";
 import Ingresarcamisa from "./Ingresarcamisa";
 import Style from "./css/style.css";
 
@@ -13,6 +14,7 @@ class Filadelatabladecamisas extends Component {
       LIKES: this.props.likes,
       IMAGEN: this.props.imagen,
       LIKED: false,
+      LIKED_PREV: false,
       SHOW_HEART: false,
     },
   };
@@ -26,6 +28,7 @@ class Filadelatabladecamisas extends Component {
     //  const buttonClassName = CAMISA.LIKE_ANIMATION ? 'svg button-like' : 'svg';
     return (
       <React.Fragment>
+         <Animated animationIn="bounceInLeft" animationInDelay="10s" animationOut="fadeOut" isVisible={true}> 
         <div className="post">
           <h2>{this.state.CAMISA.NOMBRE}</h2>
           <div className="img">
@@ -94,6 +97,7 @@ class Filadelatabladecamisas extends Component {
             <span>{this.state.CAMISA.LIKES}</span>
           </button>
         </div>
+        </Animated>   
       </React.Fragment>
     );
   }

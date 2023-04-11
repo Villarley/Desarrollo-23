@@ -3,14 +3,18 @@ import "./css/loader.css"; // Importa el archivo CSS
 class Loader extends Component {
   render() {
     return (
-        <React.Fragment>
-      <div className="content"> {/* Usa className en lugar de class */}
-        <div className="circle"></div>
-        <div className="circle"></div>
-        <div className="circle"></div>
-        <div className="circle"></div>
-      </div>
-        </React.Fragment>
+      <React.Fragment>
+        <div class="middle">
+          <div class="bar bar1"></div>
+          <div class="bar bar2"></div>
+          <div class="bar bar3"></div>
+          <div class="bar bar4"></div>
+          <div class="bar bar5"></div>
+          <div class="bar bar6"></div>
+          <div class="bar bar7"></div>
+          <div class="bar bar8"></div>
+        </div>
+      </React.Fragment>
     );
   }
 }
