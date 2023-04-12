@@ -43,7 +43,7 @@ exports.Login = (req, res) => {
 };
 
 exports.Modificar = (req, res) => {
-  Item.updateOne(
+  Item.update(
     { _id: req.body.id },
     {
       $set: {
