@@ -29,8 +29,7 @@ exports.Guardar = (req, res) => {
 };
 
 exports.Login = (req, res) => {
-  console.log(req.body.EMAIL
-    );
+  console.log(req.body.EMAIL);
   Item.find({ EMAIL: req.body.EMAIL, PASSWORD: req.body.PASSWORD }, (err, persona) => {
     if (err) {
       res.send(err);

@@ -127,7 +127,9 @@ class SignUp extends Component {
         console.log(this.state.PERSONA, 'hola');
   }
   logIn(PERSONA){
+    //aqui esta el error
     var objetolocal = PERSONA;
+    console.log(objetolocal);
         // const Url = 'https://kongzilla.herokuapp.com/api/guardarpersona';
         const Url = "http://localhost:8880/api/login";
         const requestMetadata = {
