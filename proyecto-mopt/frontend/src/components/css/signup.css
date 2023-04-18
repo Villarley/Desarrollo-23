@@ -1,8 +1,8 @@
 body{
     background: #232fff;
 }
-h2{
-    margin-top: -11vh;
+.input{
+    width: 50vh;
 }
 .container{
     margin: 150px auto 30px;
@@ -12,8 +12,14 @@ h2{
     place-items: center;
     gap: 10px;
     width: 460px;
-    background: white;
+    background: mintcream;
     border-radius: 15px;
     padding: 160px 45px 30px;
     box-shadow: 0 10px 40px rgb(0, 0, 0, .1);
+}
+.active{
+    display: block;
+}
+.negative{
+    display: none;
 }
