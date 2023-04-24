@@ -21,7 +21,7 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [logueado, setLogueado] = React.useState(false);
   const [persona, setPersona] = useState({
-    nombre: "",
+    nombre: this.props.id,
     apellido: "",
     email: "",
     tipousuario: "",

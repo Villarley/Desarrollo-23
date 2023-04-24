@@ -126,9 +126,9 @@ class SignUp extends Component {
         });
         console.log(this.state.PERSONA, 'hola');
   }
-  logIn(PERSONA){
+  logIn(){
     //aqui esta el error
-    var objetolocal = PERSONA;
+    var objetolocal = this.state.PERSONA;
     console.log(objetolocal);
         // const Url = 'https://kongzilla.herokuapp.com/api/guardarpersona';
         const Url = "http://localhost:8880/api/login";
@@ -150,7 +150,7 @@ class SignUp extends Component {
             });
             // }
 
-            if (PERSONA === "Error") {
+            if (this.state.PERSONA === "Error") {
             this.setState({snackbar: true});
             } else {
             }
