@@ -7,7 +7,7 @@ class Main extends Component {
     render(){
         return (
             <React.Fragment>
-                <Signin/>
+                <SignUp/>
             </React.Fragment>
         );
     }

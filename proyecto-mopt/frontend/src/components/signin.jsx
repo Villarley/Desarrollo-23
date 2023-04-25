@@ -134,7 +134,8 @@ class SignUp extends Component {
     );
     }
     else{
-        <Page                   
+        <Page         
+        logueado={this.state.persona.logueado}          
         nombre={this.state.persona.nombre}
         foto={this.state.persona.foto}
         apellido={this.state.persona.apellido}

@@ -5,6 +5,7 @@ class InputFile extends Component {
   render() {
     return (
       <React.Fragment>
+        <div className="body">
         <div className="file-input">
           <input
             type="file"
@@ -31,6 +32,7 @@ class InputFile extends Component {
             </svg>
             <span>Upload file</span>
           </label>
+        </div>
         </div>
       </React.Fragment>
     );
