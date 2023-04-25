@@ -5,3 +5,10 @@ body{
     margin-top: 10vh;
     margin-left: 8vh;
 }
+.containerswal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    row-gap: 10px;
+}

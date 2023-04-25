@@ -110,7 +110,7 @@ class SignUp extends Component {
             >
               Log
             </Button>
-          </div>
+          </div>  
         </React.Fragment>
       );
     } else {
