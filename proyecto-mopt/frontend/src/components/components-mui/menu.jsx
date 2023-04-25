@@ -38,7 +38,9 @@ function ResponsiveAppBar(props) {
     tipousuario: props.rol,
     password: props.password,
     foto: props.foto,
-    citas: props.citas,
+    citas: {
+      
+    },
   });
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -192,7 +194,7 @@ function ResponsiveAppBar(props) {
           </AppBar>
           <div className="containerh2">
             <h1>
-              Hola {persona.nombre} , Saca tu cita para la prueba
+              Hola {persona.nombre} , saca tu cita para la prueba
               <br /> teorica de manejo!
             </h1>
             <Button
@@ -344,35 +346,87 @@ function ResponsiveAppBar(props) {
       );
     }
   }
+  function actualizardatos(evt){
+    console.log(evt.target.value);
+    var objetolocalpersona = new Object();
+
+        objetolocalpersona = persona;
+        switch (evt.target.id) {
+        case "date": {
+            setPersona({citas,fecha: 'hola'});
+            console.log(citas);
+            break;
+        }
+        case "cedula": {
+            objetolocalpersona.password = evt.target.value;
+            console.log(objetolocalpersona.password);
+            break;
+        }
+        case "rol": {
+            console.log(this.state.persona);
+            objetolocalpersona.tipousuario = evt.target.value;
+            console.log(objetolocalpersona.tipousuario);
+            break;
+        }
+        case "nombre": {
+            console.log(this.state.persona);
+            objetolocalpersona.nombre = evt.target.value;
+            console.log(objetolocalpersona.nombre);
+            break;
+        }
+        case "apellido": {
+            console.log(this.state.persona);
+            objetolocalpersona.apellido = evt.target.value;
+            console.log(objetolocalpersona.apellido);
+            break;
+        }
+        }
+        this.setState({
+        persona: objetolocalpersona,
+        });
+        console.log(this.state.persona, 'hola');
+  }
   function Show(evt) {
     MySwal.fire({
       html: (
         <div className="containerswal">
-          <TextField
-            id="email"
-            className="input"
-            label="Email"
-            variant="outlined"
-            onChange={(evt) => this.actualizardatos(evt)}
-          />
+          <input type="date" name="" id="date" onChange={(evt) => actualizardatos(evt)}/>
           <TextField
             id="cedula"
             className="input"
             label="cedula"
             variant="outlined"
-            onChange={(evt) => this.actualizardatos(evt)}
+            onChange={(evt) => actualizardatos(evt)}
           />
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Age"
+            onChange={(evt) => actualizardatos(evt)}
           >
             <MenuItem value={"Paso ancho"}>Paso Ancho</MenuItem>
             <MenuItem value={"Alajuela"}>Alajuela</MenuItem>
             <MenuItem value={"Perez Zeledon"}>Perez Zeledon</MenuItem>
           </Select>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="tipo"
+            placeholder="Tipo de licencia"
+            onChange={(evt) => actualizardatos(evt)}
+          >
+            <MenuItem value={"A"}>A</MenuItem>
+            <MenuItem value={"B"}>B</MenuItem>
+            <MenuItem value={"C"}>C</MenuItem>
+          </Select>
         </div>
       ),
+      customClass: {
+        container: "my-modal-container",
+        popup: "my-modal-popup",
+        content: "my-modal-content",
+        closeButton: "my-modal-close-button",
+      },
       focusConfirm: false,
       showConfirmButton: false,
       showCloseButton: false,

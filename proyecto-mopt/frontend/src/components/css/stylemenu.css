@@ -1,6 +1,21 @@
 body{
     background: transparent;
 }
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline, .MuiOutlinedInput-root:focus .MuiOutlinedInput-notchedOutline:focus  {
+    border-color: #232fff; /* Cambia el color aquí */
+  }
+  .MuiSelect-select:focus {
+    border-color: #232fff !important;
+  }
+  #demo-simple-select{
+    width: 43vh;
+  }
+  input[type="date"]{
+    width: 49vh;
+    border-radius: 2vh;
+    border: 1px solid #232fff;
+    height: 7vh;
+  }
 .containerh2{
     margin-top: 10vh;
     margin-left: 8vh;
@@ -12,3 +27,36 @@ body{
     align-items: center ;
     row-gap: 10px;
 }
+.swal2-modal{
+    background-color: whitesmoke;
+    border-radius: 30px;
+  }
+  
+  .my-modal{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+    padding: 1vh;
+  }
+  
+  .my-content{
+    color: #fff;
+    font-size: 20px;
+  }
+  
+  .my-confirm-button{
+    background-color: #e6b800;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+  }
+  
+  .my-cancel-button{
+    background-color: #ff3333;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+  }
+    

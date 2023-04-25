@@ -114,6 +114,7 @@ class SignUp extends Component {
         </React.Fragment>
       );
     } else {
+      console.log(this.state.persona);
       return (
         <React.Fragment>
           <Menu
@@ -123,7 +124,11 @@ class SignUp extends Component {
             foto={this.state.persona.FOTO}
             apellido={this.state.persona.APELLIDO}
             rol={this.state.persona.TIPOUSUARIO}
-            citas={this.state.persona.CITAS}
+              FECHA = {this.state.persona.CITAS.FECHA}
+            LUGAR = {this.state.persona.CITAS.LUGAR}
+            TIPODEPRUEBA = {this.state.persona.CITAS.TIPODEPRUEBA}
+            CEDULA = {this.state.persona.CITAS.CEDULA}
+            
             id={this.state.persona._id}
           />
         </React.Fragment>
