@@ -14,10 +14,12 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import SendIcon from '@mui/icons-material/Send';
 import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 import Divider from '@mui/material/Divider';
 import SignUp from '../signup';
 import Calendar from './calendario';
 import "../css/stylemenu.css"
+const MySwal = withReactContent(Swal);
 const pages = ['Citas', 'Calendario'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -182,7 +184,7 @@ function ResponsiveAppBar(props) {
         </AppBar>
         <div className="containerh2">
         <h1>Hola {persona.nombre} , Saca tu cita para la prueba<br/> teorica de manejo!</h1>
-        <Button variant="contained" endIcon={<SendIcon />} onClick={() => this.showal()}>
+        <Button variant="contained" endIcon={<SendIcon />} onClick={(evt) => Show(evt)}>
         Saca tu cita
       </Button>
         </div>
@@ -325,6 +327,80 @@ function ResponsiveAppBar(props) {
     }
 
   }
+  function Show(evt) {
+    MySwal.fire({
+      html: (
+        <div className="my-modal">
+          <div className="my-modal-header">Ingrese los datos</div>
+          <div className="my-modal-content">
+            <div className="my-modal-input-group">
+              <input
+                id="Nombre"
+                type="text"
+                className="my-modal-input"
+                placeholder="Nombre"
+                onChange={(evt) => this.actualizardatosguardar(evt)}
+              />
+            </div>
   
+            <div className="my-modal-input-group">
+              <input
+                id="Color1"
+                type="text"
+                className="my-modal-input"
+                placeholder="Color 1"
+                onChange={(evt) => this.actualizardatosguardar(evt)}
+              />
+            </div>
+  
+            <div className="my-modal-input-group">
+              <input
+                id="Color2"
+                type="text"
+                className="my-modal-input"
+                placeholder="Color 2"
+                onChange={(evt) => this.actualizardatosguardar(evt)}
+              />
+            </div>
+  
+            <div className="my-modal-input-group">
+              <input
+                id="Color3"
+                type="text"
+                className="my-modal-input"
+                placeholder="Color 3"
+                onChange={(evt) => this.actualizardatosguardar(evt)}
+              />
+            </div>
+  
+            <div className="upload-btn-wrapper">
+              <button className="my-btn my-btn-secondary">
+                Seleccionar imagen
+              </button>
+              <input
+                type="file"
+                name=""
+                id="Imagen"
+                onChange={(evt) => this._onChange(evt)}
+              />
+            </div>
+          </div>
+  
+          <button className="my-btn my-btn-primary" onClick={() => this.guardarcita}>
+            Guardar camisa
+          </button>
+        </div>
+      ),
+      focusConfirm: false,
+      showConfirmButton: false,
+      showCloseButton: false,
+      customClass: {
+        container: "my-modal-container",
+        popup: "my-modal-popup",
+        content: "my-modal-content",
+        closeButton: "my-modal-close-button",
+      },
+    });
+  }
 }
 export default ResponsiveAppBar;
