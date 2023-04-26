@@ -19,9 +19,11 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { Container } from "@mui/material/Container";
 import Menu from "./components-mui/menu";
+import Link from '@mui/material/Link';
+import Signin from './signin';
 class SignUp extends Component {
   state = {
-    snackbar: false,
+    signin: false,
     PERSONA: {
       EMAIL: "",
       PASSWORD: "",
@@ -37,10 +39,10 @@ class SignUp extends Component {
       PASSWORD: "",
       FOTO: "",
       CITAS: {
-        FECHA: "",
-        LUGAR: "",
-        TIPODEPRUEBA: "",
-        CEDULA: "",
+        FECHA: "1",
+        LUGAR: "1",
+        TIPODEPRUEBA: "1",
+        CEDULA: "1",
       },
     },
   };
@@ -62,7 +64,7 @@ class SignUp extends Component {
     //     </React.Fragment>
     //   )
     // }
-    if (!this.state.logueado) {
+    if (!this.state.logueado && !this.state.signin) {
       return (
         <React.Fragment>
           <div className="container">
@@ -103,6 +105,7 @@ class SignUp extends Component {
                 label="Password"
               />
             </FormControl>
+            <Link href="#" onClick={ () => {this.setState({signin: true,})}}>¿No tienes cuenta?</Link>
             <Button
               variant="contained"
               color="success"
@@ -113,7 +116,12 @@ class SignUp extends Component {
           </div>  
         </React.Fragment>
       );
-    } else {
+    } else if(!this.state.logueado && this.state.signin){
+      return(
+        <Signin/>
+      );
+    }
+     else{
       console.log(this.state.persona);
       return (
         <React.Fragment>
@@ -124,10 +132,10 @@ class SignUp extends Component {
             foto={this.state.persona.FOTO}
             apellido={this.state.persona.APELLIDO}
             rol={this.state.persona.TIPOUSUARIO}
-              FECHA = {this.state.persona.CITAS.FECHA}
-            LUGAR = {this.state.persona.CITAS.LUGAR}
-            TIPODEPRUEBA = {this.state.persona.CITAS.TIPODEPRUEBA}
-            CEDULA = {this.state.persona.CITAS.CEDULA}
+            //   FECHA = {this.state.persona.CITAS.FECHA}
+            // LUGAR = {this.state.persona.CITAS.LUGAR}
+            // TIPODEPRUEBA = {this.state.persona.CITAS.TIPODEPRUEBA}
+            // CEDULA = {this.state.persona.CITAS.CEDULA}
             
             id={this.state.persona._id}
           />

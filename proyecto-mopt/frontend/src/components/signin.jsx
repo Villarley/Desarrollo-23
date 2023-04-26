@@ -20,8 +20,11 @@ import Alert from '@mui/material/Alert';
 import { Container } from '@mui/material/Container';
 import InputFile from "./components-mui/inputfile";
 import Page from "./components-mui/menu"
-class SignUp extends Component {
+import { Link } from "@mui/material";
+import SignUp from "./signup";
+class Signin extends Component {
   state = {
+    signup: false,
     PERSONAL: {
         EMAIL: "",
         PASSWORD: "",
@@ -37,10 +40,10 @@ class SignUp extends Component {
       password: "",
       foto: "",
       citas: {
-        fecha: "",
-        lugar: "",
-        tipodeprueba: "",
-        cedula: "",
+        fecha: "1",
+        lugar: "1",
+        tipodeprueba: "1",
+        cedula: "1",
       },
     },
   };
@@ -61,7 +64,7 @@ class SignUp extends Component {
     //     </React.Fragment>
     //   )
     // }
-    if(!this.state.logueado){
+    if(!this.state.logueado && !this.state.signup){
     return(
       <React.Fragment>
         <div className="container">
@@ -125,6 +128,7 @@ class SignUp extends Component {
             <span>Upload file</span>
           </label>
         </div>
+        <Link href="#" onClick={() => {this.setState({signup: true,})}}>¿Ya tienes cuenta?</Link>
         <Button variant="contained" color="success" onClick={() => this.ingresarUsuario()}>
         Log
       </Button>
@@ -132,6 +136,11 @@ class SignUp extends Component {
         </div>
       </React.Fragment>
     );
+    }
+    else if(!this.state.logueado && this.state.signup){
+      return(
+        <SignUp/>
+      );
     }
     else{
         <Page         
@@ -260,7 +269,7 @@ class SignUp extends Component {
             console.log(this.state.persona);
             // }
 
-            if (this.state.PERSONAL !== "Error") {
+            if (this.state.persona !== "Error") {
                 this.setState({logueado: true,})
             } 
 
@@ -269,4 +278,4 @@ class SignUp extends Component {
     };
 }
 
-export default SignUp;
+export default Signin;

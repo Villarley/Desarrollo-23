@@ -39,7 +39,10 @@ function ResponsiveAppBar(props) {
     password: props.password,
     foto: props.foto,
     citas: {
-      
+      fecha:'',
+      prueba:'',
+      tipo:'',
+      lugar:'',
     },
   });
   const handleOpenNavMenu = (event) => {
@@ -353,38 +356,32 @@ function ResponsiveAppBar(props) {
         objetolocalpersona = persona;
         switch (evt.target.id) {
         case "date": {
-            setPersona({citas,fecha: 'hola'});
-            console.log(citas);
+          objetolocalpersona.fecha = evt.target.value;
+            setPersona({fecha: objetolocalpersona.fecha});
+            console.log(persona.fecha);
             break;
         }
         case "cedula": {
             objetolocalpersona.password = evt.target.value;
             console.log(objetolocalpersona.password);
+            setPersona({password: objetolocalpersona.password});
             break;
         }
-        case "rol": {
-            console.log(this.state.persona);
-            objetolocalpersona.tipousuario = evt.target.value;
-            console.log(objetolocalpersona.tipousuario);
+        case "tipo": {
+          alert('si');
+          objetolocalpersona.tipo = evt.target.value;
+          console.log(objetolocalpersona.tipo);
+          setPersona({tipo: objetolocalpersona.tipo});
             break;
         }
-        case "nombre": {
-            console.log(this.state.persona);
-            objetolocalpersona.nombre = evt.target.value;
-            console.log(objetolocalpersona.nombre);
-            break;
-        }
-        case "apellido": {
-            console.log(this.state.persona);
-            objetolocalpersona.apellido = evt.target.value;
-            console.log(objetolocalpersona.apellido);
+        case "demo-simple-select-label": {
+          objetolocalpersona.lugar = evt.target.value;
+          console.log(objetolocalpersona.lugar);
+          setPersona({lugar: objetolocalpersona.lugar});
             break;
         }
         }
-        this.setState({
-        persona: objetolocalpersona,
-        });
-        console.log(this.state.persona, 'hola');
+        setPersona({persona: objetolocalpersona});
   }
   function Show(evt) {
     MySwal.fire({
@@ -400,7 +397,7 @@ function ResponsiveAppBar(props) {
           />
           <Select
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            id="lugar demo-simple-select"
             label="Age"
             onChange={(evt) => actualizardatos(evt)}
           >
@@ -410,7 +407,7 @@ function ResponsiveAppBar(props) {
           </Select>
           <Select
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            id="tipo"
             label="tipo"
             placeholder="Tipo de licencia"
             onChange={(evt) => actualizardatos(evt)}

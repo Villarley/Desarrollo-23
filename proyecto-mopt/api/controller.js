@@ -1,6 +1,7 @@
 const Item = require('./userSchema.js');
 
 exports.Guardar = (req, res) => {
+  console.log(req.body.citas);
   Item.create({
     NOMBRE: req.body.nombre,
     APELLIDO: req.body.apellido,
@@ -9,10 +10,7 @@ exports.Guardar = (req, res) => {
     PASSWORD: req.body.password,
     FOTO: req.body.foto,
     CITAS: {
-      FECHA: req.body.fecha,
-      LUGAR: req.body.lugar,
-      TIPODEPRUEBA: req.body.tipodeprueba,
-      CEDULA: req.body.cedula
+      FECHA: req.body.fecha
     }
   }, (err, item) => {
     if (err) {
