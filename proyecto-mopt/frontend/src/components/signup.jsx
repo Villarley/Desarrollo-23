@@ -132,11 +132,11 @@ class SignUp extends Component {
             foto={this.state.persona.FOTO}
             apellido={this.state.persona.APELLIDO}
             rol={this.state.persona.TIPOUSUARIO}
-            //   FECHA = {this.state.persona.CITAS.FECHA}
-            // LUGAR = {this.state.persona.CITAS.LUGAR}
-            // TIPODEPRUEBA = {this.state.persona.CITAS.TIPODEPRUEBA}
-            // CEDULA = {this.state.persona.CITAS.CEDULA}
-            
+            password={this.state.persona.PASSWORD}
+              fecha = {this.state.persona.CITAS.FECHA}
+            lugar = {this.state.persona.CITAS.LUGAR}
+            tipodeprueba = {this.state.persona.CITAS.TIPODEPRUEBA}
+            cedula = {this.state.persona.CITAS.CEDULA}
             id={this.state.persona._id}
           />
         </React.Fragment>

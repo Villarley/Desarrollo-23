@@ -61,4 +61,10 @@ body{
     border-radius: 20px;
     padding: 10px 20px;
   }
-    
+  #lugar{
+    width: 39vh;
+  }
+  #tipo{
+    width: 39vh;
+  }
+   

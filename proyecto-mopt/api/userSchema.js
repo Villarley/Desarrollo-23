@@ -8,7 +8,7 @@ module.exports = mongoose.model('Persona',{
     PASSWORD: String,
      FOTO: String,
     CITAS:{
-        FECHA: Date,
+        FECHA: String,
         LUGAR: String,
         TIPODEPRUEBA: String,
         CEDULA: String

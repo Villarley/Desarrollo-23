@@ -21,6 +21,7 @@ import Calendar from "./calendario";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import "../css/stylemenu.css";
+import imgCar from "./car"
 const MySwal = withReactContent(Swal);
 const pages = ["Citas", "Calendario"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -32,6 +33,22 @@ function ResponsiveAppBar(props) {
   const [calendario, setCalendario] = React.useState(true);
   const [logueado, setLogueado] = React.useState(props.logueado);
   const [persona, setPersona] = useState({
+    id: JSON.parse(localStorage.getItem("personalc")).id,
+    nombre: JSON.parse(localStorage.getItem("personalc")).nombre,
+    apellido: JSON.parse(localStorage.getItem("personalc")).apellido,
+    email: JSON.parse(localStorage.getItem("personalc")).email,
+    tipousuario: JSON.parse(localStorage.getItem("personalc")).rol,
+    password:JSON.parse(localStorage.getItem("personalc")).password,
+    foto: JSON.parse(localStorage.getItem("personalc")).foto,
+    citas: {
+      fecha: JSON.parse(localStorage.getItem("personalc")).citas.fecha,
+      cedula: JSON.parse(localStorage.getItem("personalc")).citas.cedula,
+      tipodeprueba: JSON.parse(localStorage.getItem("personalc")).citas.tipodeprueba,
+      lugar: JSON.parse(localStorage.getItem("personalc")).citas.lugar,
+    },
+  });
+  const personalc ={
+    id: props.id,
     nombre: props.nombre,
     apellido: props.apellido,
     email: props.email,
@@ -39,12 +56,15 @@ function ResponsiveAppBar(props) {
     password: props.password,
     foto: props.foto,
     citas: {
-      fecha:'',
-      prueba:'',
-      tipo:'',
-      lugar:'',
+      fecha: props.fecha||"1",
+      cedula: props.cedula||"1",
+      tipodeprueba: props.tipodeprueba||"1",
+      lugar: props.lugar||"1",
     },
-  });
+  }
+  console.log(persona.id);
+  localStorage.setItem('personalc', JSON.stringify(personalc));
+  console.log(JSON.parse(localStorage.getItem("personalc")))
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -166,7 +186,7 @@ function ResponsiveAppBar(props) {
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar alt={persona.nombre} src={persona.foto} />
+                      <Avatar alt={persona.nombre} src={JSON.parse(localStorage.getItem("personalc")).foto} />
                     </IconButton>
                   </Tooltip>
                   <Menu
@@ -197,7 +217,7 @@ function ResponsiveAppBar(props) {
           </AppBar>
           <div className="containerh2">
             <h1>
-              Hola {persona.nombre} , saca tu cita para la prueba
+              Hola {JSON.parse(localStorage.getItem("personalc")).nombre} , saca tu cita para la prueba
               <br /> teorica de manejo!
             </h1>
             <Button
@@ -209,6 +229,9 @@ function ResponsiveAppBar(props) {
             </Button>
           </div>
           <div className="containerinputs"></div>
+          <div className="car">
+            
+          </div>
         </React.Fragment>
       );
     } else if (calendario) {
@@ -349,45 +372,51 @@ function ResponsiveAppBar(props) {
       );
     }
   }
-  function actualizardatos(evt){
+  function actualizardatos(evt) {
     console.log(evt.target.value);
     var objetolocalpersona = new Object();
 
-        objetolocalpersona = persona;
-        switch (evt.target.id) {
-        case "date": {
-          objetolocalpersona.fecha = evt.target.value;
-            setPersona({fecha: objetolocalpersona.fecha});
-            console.log(persona.fecha);
-            break;
-        }
-        case "cedula": {
-            objetolocalpersona.password = evt.target.value;
-            console.log(objetolocalpersona.password);
-            setPersona({password: objetolocalpersona.password});
-            break;
-        }
-        case "tipo": {
-          alert('si');
-          objetolocalpersona.tipo = evt.target.value;
-          console.log(objetolocalpersona.tipo);
-          setPersona({tipo: objetolocalpersona.tipo});
-            break;
-        }
-        case "demo-simple-select-label": {
-          objetolocalpersona.lugar = evt.target.value;
-          console.log(objetolocalpersona.lugar);
-          setPersona({lugar: objetolocalpersona.lugar});
-            break;
-        }
-        }
-        setPersona({persona: objetolocalpersona});
+    objetolocalpersona = persona.citas;
+    console.log(persona.citas);
+    switch (evt.target.id || evt.target.name) {
+      case "date": {
+        objetolocalpersona.fecha = evt.target.value;
+        setPersona({citas,fecha: objetolocalpersona.fecha });
+        console.log(persona.fecha);
+        break;
+      }
+      case "cedula": {
+        objetolocalpersona.cedula = evt.target.value;
+        console.log(objetolocalpersona.cedula);
+        setPersona({ citas,cedula: objetolocalpersona.cedula });
+        break;
+      }
+      case "tipodeprueba": {
+        objetolocalpersona.tipodeprueba = evt.target.value;
+        console.log(objetolocalpersona.tipodeprueba);
+        setPersona({ citas,tipodeprueba: objetolocalpersona.tipodeprueba });
+        break;
+      }
+      case "lugar": {
+        objetolocalpersona.lugar = evt.target.value;
+        console.log(objetolocalpersona.lugar);
+        setPersona({ citas,lugar: objetolocalpersona.lugar });
+        break;
+      }
+    }
+    console.log(objetolocalpersona);
+    setPersona({ citas: objetolocalpersona });
   }
   function Show(evt) {
     MySwal.fire({
       html: (
         <div className="containerswal">
-          <input type="date" name="" id="date" onChange={(evt) => actualizardatos(evt)}/>
+          <input
+            type="date"
+            name=""
+            id="date"
+            onChange={(evt) => actualizardatos(evt)}
+          />
           <TextField
             id="cedula"
             className="input"
@@ -396,26 +425,43 @@ function ResponsiveAppBar(props) {
             onChange={(evt) => actualizardatos(evt)}
           />
           <Select
-            labelId="demo-simple-select-label"
-            id="lugar demo-simple-select"
-            label="Age"
+            id="lugar"
+            name="lugar"
+            defaultValue=""
+            label="Lugar"
+            displayEmpty
             onChange={(evt) => actualizardatos(evt)}
           >
+            <MenuItem value="" disabled>
+              <em>Lugar</em>
+            </MenuItem>
             <MenuItem value={"Paso ancho"}>Paso Ancho</MenuItem>
             <MenuItem value={"Alajuela"}>Alajuela</MenuItem>
             <MenuItem value={"Perez Zeledon"}>Perez Zeledon</MenuItem>
           </Select>
           <Select
-            labelId="demo-simple-select-label"
-            id="tipo"
-            label="tipo"
+            defaultValue=""
+            name="tipodeprueba"
+            id="tipodeprueba"
+            label="Tipo de licencia"
+            displayEmpty
             placeholder="Tipo de licencia"
             onChange={(evt) => actualizardatos(evt)}
           >
-            <MenuItem value={"A"}>A</MenuItem>
-            <MenuItem value={"B"}>B</MenuItem>
-            <MenuItem value={"C"}>C</MenuItem>
+            <MenuItem value="" disabled>
+              <em>Tipo de licencia</em>
+            </MenuItem>
+            <MenuItem value={"A"}><em>A</em> </MenuItem>
+            <MenuItem value={"B"}><em>B</em> </MenuItem>
+            <MenuItem value={"C"}><em>C</em> </MenuItem>
           </Select>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => guardarcita()}
+          >
+            Log
+          </Button>
         </div>
       ),
       customClass: {
@@ -428,6 +474,31 @@ function ResponsiveAppBar(props) {
       showConfirmButton: false,
       showCloseButton: false,
     });
+  }
+  function guardarcita(){
+    console.log(persona)
+    var objetolocal = persona;
+    // const Url = 'https://kongzilla.herokuapp.com/api/guardarpersona';
+    const Url = "http://localhost:8880/api/modificaPersona";
+    const requestMetadata = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(objetolocal),
+    };
+
+    fetch(Url, requestMetadata)
+      .then((res) => res.json())
+      .then((personas) => {
+        setPersona({
+          persona: objetolocal,
+        });
+        console.log(persona);
+
+        // this.setState({combosactuales: recipes})
+        // alert("Guardado");
+      });
   }
 }
 export default ResponsiveAppBar;

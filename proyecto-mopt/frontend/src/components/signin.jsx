@@ -142,13 +142,14 @@ class Signin extends Component {
         <SignUp/>
       );
     }
-    else{
+    else if(this.state.logueado && this.state.signup){
         <Page         
         logueado={this.state.persona.logueado}          
         nombre={this.state.persona.nombre}
         foto={this.state.persona.foto}
         apellido={this.state.persona.apellido}
         rol={this.state.persona.tipousuario}
+        password={this.state.persona.password}
         citas={this.state.persona.citas}
         id={this.state.persona._id}/>
     }

@@ -2,6 +2,7 @@ const Item = require('./userSchema.js');
 
 exports.Guardar = (req, res) => {
   console.log(req.body.citas);
+
   Item.create({
     NOMBRE: req.body.nombre,
     APELLIDO: req.body.apellido,
@@ -10,7 +11,10 @@ exports.Guardar = (req, res) => {
     PASSWORD: req.body.password,
     FOTO: req.body.foto,
     CITAS: {
-      FECHA: req.body.fecha
+      FECHA: req.body.citas.fecha || "1",
+      LUGAR: req.body.citas.lugar || "1",
+      TIPODEPRUEBA: req.body.citas.tipodeprueba || "1",
+      CEDULA: req.body.citas.cedula || "1"
     }
   }, (err, item) => {
     if (err) {
@@ -42,21 +46,22 @@ exports.Login = (req, res) => {
 };
 
 exports.Modificar = (req, res) => {
+  console.log(req.body);
   Item.update(
     { _id: req.body.id },
     {
       $set: {
-        NOMBRE: req.body.NOMBRE,
-        APELLIDO: req.body.APELLIDO,
-        EMAIL: req.body.EMAIL,
-        TIPOUSUARIO: req.body.TIPOUSUARIO,
-        PASSWORD: req.body.PASSWORD,
-        FOTO: req.body.FOTO,
+        NOMBRE: req.body.nombre,
+        APELLIDO: req.body.apellido,
+        EMAIL: req.body.email,
+        TIPOUSUARIO: req.body.tipousuario,
+        PASSWORD: req.body.password,
+        FOTO: req.body.foto,
         CITAS: {
-          FECHA: req.body.FECHA,
-          LUGAR: req.body.LUGAR,
-          TIPODEPRUEBA: req.body.TIPODEPRUEBA,
-          CEDULA: req.body.CEDULA
+          FECHA: req.body.citas.fecha || "1",
+          LUGAR: req.body.citas.lugar || "1",
+          TIPODEPRUEBA: req.body.citas.tipodeprueba || "1",
+          CEDULA: req.body.citas.cedula || "1"
         }
       }
     },
