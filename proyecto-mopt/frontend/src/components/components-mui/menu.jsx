@@ -21,12 +21,46 @@ import Calendar from "./calendario";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import "../css/stylemenu.css";
-import imgCar from "./car"
+import Img1 from "./../assets/car.jpg";
+import ImgCar from "./car";
+import Dropzone from "react-dropzone";
 const MySwal = withReactContent(Swal);
 const pages = ["Citas", "Calendario"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar(props) {
+  const [imgPreview, setImgPreview] = useState(null);
+
+  const [file, setFile] = useState(null);
+
+  const handleDrop = (acceptedFiles) => {
+    const currentFile = acceptedFiles[0];
+    const reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        setFile(reader.result);
+      },
+      false
+    );
+    reader.readAsDataURL(currentFile);
+  };
+  const personalc = {
+    id: props.id,
+    nombre: props.nombre,
+    apellido: props.apellido,
+    email: props.email,
+    tipousuario: props.rol,
+    password: props.password,
+    foto: props.foto,
+    citas: {
+      fecha: props.fecha || "1",
+      cedula: props.cedula || "1",
+      tipodeprueba: props.tipodeprueba || "1",
+      lugar: props.lugar || "1",
+    },
+  };
+  localStorage.setItem("personalc", JSON.stringify(personalc));
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [citas, setCitas] = React.useState(false);
@@ -38,33 +72,18 @@ function ResponsiveAppBar(props) {
     apellido: JSON.parse(localStorage.getItem("personalc")).apellido,
     email: JSON.parse(localStorage.getItem("personalc")).email,
     tipousuario: JSON.parse(localStorage.getItem("personalc")).rol,
-    password:JSON.parse(localStorage.getItem("personalc")).password,
+    password: JSON.parse(localStorage.getItem("personalc")).password,
     foto: JSON.parse(localStorage.getItem("personalc")).foto,
     citas: {
       fecha: JSON.parse(localStorage.getItem("personalc")).citas.fecha,
       cedula: JSON.parse(localStorage.getItem("personalc")).citas.cedula,
-      tipodeprueba: JSON.parse(localStorage.getItem("personalc")).citas.tipodeprueba,
+      tipodeprueba: JSON.parse(localStorage.getItem("personalc")).citas
+        .tipodeprueba,
       lugar: JSON.parse(localStorage.getItem("personalc")).citas.lugar,
     },
   });
-  const personalc ={
-    id: props.id,
-    nombre: props.nombre,
-    apellido: props.apellido,
-    email: props.email,
-    tipousuario: props.rol,
-    password: props.password,
-    foto: props.foto,
-    citas: {
-      fecha: props.fecha||"1",
-      cedula: props.cedula||"1",
-      tipodeprueba: props.tipodeprueba||"1",
-      lugar: props.lugar||"1",
-    },
-  }
-  console.log(persona.id);
-  localStorage.setItem('personalc', JSON.stringify(personalc));
-  console.log(JSON.parse(localStorage.getItem("personalc")))
+
+  console.log(JSON.parse(localStorage.getItem("personalc")));
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -86,7 +105,6 @@ function ResponsiveAppBar(props) {
           <AppBar position="static">
             <Container maxWidth="xl">
               <Toolbar disableGutters>
-                <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
                 <Typography
                   variant="h6"
                   noWrap
@@ -102,7 +120,7 @@ function ResponsiveAppBar(props) {
                     textDecoration: "none",
                   }}
                 >
-                  LOGO
+                  Cosevi
                 </Typography>
 
                 <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -141,7 +159,6 @@ function ResponsiveAppBar(props) {
                     ))}
                   </Menu>
                 </Box>
-                <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
                 <Typography
                   variant="h5"
                   noWrap
@@ -158,7 +175,7 @@ function ResponsiveAppBar(props) {
                     textDecoration: "none",
                   }}
                 >
-                  LOGO
+                  Cosevi
                 </Typography>
                 <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                   <Button
@@ -186,7 +203,10 @@ function ResponsiveAppBar(props) {
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar alt={persona.nombre} src={JSON.parse(localStorage.getItem("personalc")).foto} />
+                      <Avatar
+                        alt={persona.nombre}
+                        src={JSON.parse(localStorage.getItem("personalc")).foto}
+                      />
                     </IconButton>
                   </Tooltip>
                   <Menu
@@ -205,11 +225,12 @@ function ResponsiveAppBar(props) {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    {settings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
-                      </MenuItem>
-                    ))}
+                    <MenuItem key={"Profile"} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{"Profile"}</Typography>
+                    </MenuItem>
+                    <MenuItem key={"Logout"} onClick={() => setLogueado(false)}>
+                      <Typography textAlign="center">{"Logout"}</Typography>
+                    </MenuItem>
                   </Menu>
                 </Box>
               </Toolbar>
@@ -217,7 +238,8 @@ function ResponsiveAppBar(props) {
           </AppBar>
           <div className="containerh2">
             <h1>
-              Hola {JSON.parse(localStorage.getItem("personalc")).nombre} , saca tu cita para la prueba
+              Hola {JSON.parse(localStorage.getItem("personalc")).nombre} , saca
+              tu cita para la prueba
               <br /> teorica de manejo!
             </h1>
             <Button
@@ -230,7 +252,7 @@ function ResponsiveAppBar(props) {
           </div>
           <div className="containerinputs"></div>
           <div className="car">
-            
+            <img src={Img1} alt="" />
           </div>
         </React.Fragment>
       );
@@ -239,7 +261,6 @@ function ResponsiveAppBar(props) {
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
               <Typography
                 variant="h6"
                 noWrap
@@ -255,7 +276,7 @@ function ResponsiveAppBar(props) {
                   textDecoration: "none",
                 }}
               >
-                LOGO
+                Cosevi
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -339,7 +360,10 @@ function ResponsiveAppBar(props) {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={persona.nombre} src={persona.foto} />
+                    <Avatar
+                      alt={persona.nombre}
+                      src={JSON.parse(localStorage.getItem("personalc")).foto}
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -358,19 +382,22 @@ function ResponsiveAppBar(props) {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
+                  <MenuItem key={"Profile"} onClick={() => Show2()}>
+                    <Typography textAlign="center">{"Profile"}</Typography>
+                  </MenuItem>
+                  <MenuItem key={"Logout"} onClick={() => setLogueado(false)}>
+                    <Typography textAlign="center">{"Logout"}</Typography>
+                  </MenuItem>
                 </Menu>
               </Box>
             </Toolbar>
           </Container>
-          <Calendar></Calendar>
+          <Calendar setcitas={setcitas}></Calendar>
         </AppBar>
       );
     }
+  } else {
+    return <SignUp />;
   }
   function actualizardatos(evt) {
     console.log(evt.target.value);
@@ -381,36 +408,110 @@ function ResponsiveAppBar(props) {
     switch (evt.target.id || evt.target.name) {
       case "date": {
         objetolocalpersona.fecha = evt.target.value;
-        setPersona({citas,fecha: objetolocalpersona.fecha });
+        setPersona({ citas, fecha: objetolocalpersona.fecha });
         console.log(persona.fecha);
         break;
       }
       case "cedula": {
         objetolocalpersona.cedula = evt.target.value;
         console.log(objetolocalpersona.cedula);
-        setPersona({ citas,cedula: objetolocalpersona.cedula });
+        setPersona({ citas, cedula: objetolocalpersona.cedula });
         break;
       }
       case "tipodeprueba": {
         objetolocalpersona.tipodeprueba = evt.target.value;
         console.log(objetolocalpersona.tipodeprueba);
-        setPersona({ citas,tipodeprueba: objetolocalpersona.tipodeprueba });
+        setPersona({ citas, tipodeprueba: objetolocalpersona.tipodeprueba });
         break;
       }
       case "lugar": {
         objetolocalpersona.lugar = evt.target.value;
         console.log(objetolocalpersona.lugar);
-        setPersona({ citas,lugar: objetolocalpersona.lugar });
+        setPersona({ citas, lugar: objetolocalpersona.lugar });
         break;
       }
     }
     console.log(objetolocalpersona);
     setPersona({ citas: objetolocalpersona });
   }
+  function setcitas() {
+    setCalendario(false);
+    setCitas(true);
+  }
+  function Show2(evt) {
+    MySwal.fire({
+      html: (
+        <div className="containerswal">
+          <h2>Tus datos</h2>
+          <TextField
+            id="nombre"
+            className="input"
+            value={persona.nombre}
+            label="nombre"
+            variant="outlined"
+            onChange={(evt) => actualizardatos(evt)}
+          />
+          <TextField
+            id="nombre"
+            className="input"
+            value={persona.nombre}
+            label="nombre"
+            variant="outlined"
+            onChange={(evt) => actualizardatos(evt)}
+          />
+          <TextField
+            id="nombre"
+            className="input"
+            value={persona.nombre}
+            label="nombre"
+            variant="outlined"
+            onChange={(evt) => actualizardatos(evt)}
+          />
+          <TextField
+            id="nombre"
+            className="input"
+            value={persona.nombre}
+            label="nombre"
+            variant="outlined"
+            onChange={(evt) => actualizardatos(evt)}
+          />
+          <div className="upload-container">
+            <Dropzone onDrop={handleDrop} accept="image/*" multiple={false}>
+              {({ getRootProps, getInputProps }) => (
+                <div {...getRootProps()} className="dropzone">
+                  <input {...getInputProps()} />
+                  {file ? (
+                    <img
+                      src={file}
+                      alt="Imagen previsualizada"
+                      className="preview-image"
+                    />
+                  ) : (
+                    <div className="dropzone-content">
+                      <span className="dropzone-text">
+                        Arrastra y suelta una imagen aquí o haz click para
+                        seleccionar una.
+                      </span>
+                      <img
+                        src={persona.foto}
+                        alt="Icono de imagen"
+                        className="dropzone-icon"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+            </Dropzone>
+          </div>
+        </div>
+      ),
+    });
+  }
   function Show(evt) {
     MySwal.fire({
       html: (
         <div className="containerswal">
+          <h2>Ingresa los datos para tu cita</h2>
           <input
             type="date"
             name=""
@@ -451,9 +552,15 @@ function ResponsiveAppBar(props) {
             <MenuItem value="" disabled>
               <em>Tipo de licencia</em>
             </MenuItem>
-            <MenuItem value={"A"}><em>A</em> </MenuItem>
-            <MenuItem value={"B"}><em>B</em> </MenuItem>
-            <MenuItem value={"C"}><em>C</em> </MenuItem>
+            <MenuItem value={"A"}>
+              <em>A</em>{" "}
+            </MenuItem>
+            <MenuItem value={"B"}>
+              <em>B</em>{" "}
+            </MenuItem>
+            <MenuItem value={"C"}>
+              <em>C</em>{" "}
+            </MenuItem>
           </Select>
           <Button
             variant="contained"
@@ -475,8 +582,8 @@ function ResponsiveAppBar(props) {
       showCloseButton: false,
     });
   }
-  function guardarcita(){
-    console.log(persona)
+  function guardarcita() {
+    console.log(persona);
     var objetolocal = persona;
     // const Url = 'https://kongzilla.herokuapp.com/api/guardarpersona';
     const Url = "http://localhost:8880/api/modificaPersona";
@@ -491,10 +598,8 @@ function ResponsiveAppBar(props) {
     fetch(Url, requestMetadata)
       .then((res) => res.json())
       .then((personas) => {
-        setPersona({
-          persona: objetolocal,
-        });
-        console.log(persona);
+        localStorage.setItem("personalc", JSON.stringify(personas));
+        console.log(personas);
 
         // this.setState({combosactuales: recipes})
         // alert("Guardado");

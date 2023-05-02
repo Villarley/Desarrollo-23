@@ -3,11 +3,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: #f5f5f5;
   }
   
   .react-calendar {
+    margin-top: 15vh;
     width: 70%;
     max-width: 700px;
     height: 40%;
@@ -105,11 +106,19 @@
     font-size: 1rem;
     margin-top: 1rem;
     padding: 1rem;
+    margin-bottom: 30vh;
   }
   
   .appointments p{
     font-family: sans-serif;
     color:#212121;
     text-align: center;
+
+  }
+  .containerr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   

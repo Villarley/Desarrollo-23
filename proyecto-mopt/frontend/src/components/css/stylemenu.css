@@ -67,4 +67,86 @@ body{
   #tipo{
     width: 39vh;
   }
-   
+  .upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dropzone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    min-width: 150px;
+    position: relative;
+    border-radius: 50px;
+  }
+  
+  .dropzone-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .preview-image {
+    max-height: 150px;
+    max-width: 150px;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .dropzone-text {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  .dropzone-icon {
+    height: 120px;
+    width: auto;
+  }
+  .car{
+    margin-top: -10vh;
+    display: flex;
+    margin-left: 95vh;
+    height: 800px;
+    width: 800px;
+  }
+  .car img {
+    animation: up-down 2s ease-in-out infinite;
+  }
+  
+  @keyframes up-down {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  /* .car img {
+    animation: swing 2s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+  
+  @keyframes swing {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(15deg);
+    }
+    100% {
+      transform: rotate(-15deg);
+    }
+  } */

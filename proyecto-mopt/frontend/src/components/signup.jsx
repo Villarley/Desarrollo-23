@@ -48,6 +48,7 @@ class SignUp extends Component {
   };
 
   render() {
+    //cambia el state del password para mostrarlo como tipo texto o como password
     const handleClickShowPassword = () =>
       this.setState({ showPassword: !this.state.showPassword });
     const handleMouseDownPassword = (event) => {
@@ -64,6 +65,7 @@ class SignUp extends Component {
     //     </React.Fragment>
     //   )
     // }
+    // si no esta logueado pero tiene cuenta
     if (!this.state.logueado && !this.state.signin) {
       return (
         <React.Fragment>
@@ -116,11 +118,13 @@ class SignUp extends Component {
           </div>  
         </React.Fragment>
       );
+      //si no esta lofueado pero no tiene cuenta
     } else if(!this.state.logueado && this.state.signin){
       return(
         <Signin/>
       );
     }
+    //si esta logueado lo manda al menu.jsx que es el index
      else{
       console.log(this.state.persona);
       return (
@@ -165,10 +169,10 @@ class SignUp extends Component {
     this.setState({
       PERSONA: objetolocalpersona,
     });
-    console.log(this.state.PERSONA, "hola");
+
   }
   logIn() {
-    //aqui esta el error
+    //aqui se arma todo el esqueleto para mandar el request
     var objetolocal = this.state.PERSONA;
     console.log(objetolocal);
     // const Url = 'https://kongzilla.herokuapp.com/api/guardarpersona';

@@ -47,8 +47,9 @@ class Signin extends Component {
       },
     },
   };
-
   render() {
+    console.log(this.state.logueado);
+    console.log(this.state.signup);
     const handleClickShowPassword = () => this.setState({showPassword: !this.state.showPassword});
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
@@ -64,7 +65,9 @@ class Signin extends Component {
     //     </React.Fragment>
     //   )
     // }
+    //si no esta logueado y tampoco tiene una cuenta:
     if(!this.state.logueado && !this.state.signup){
+      console.log("1")
     return(
       <React.Fragment>
         <div className="container">
@@ -85,6 +88,7 @@ class Signin extends Component {
           <OutlinedInput
             id="outlined-adornment-password"
             type={this.state.showPassword ? 'text' : 'password'}
+            // aqui en el onchange se va actualizardatos para actualizarlos en tiempo real ya que react es declarativo
             onChange={(evt) => this.actualizardatos(evt)}
             endAdornment={
               <InputAdornment position="end">
@@ -137,23 +141,15 @@ class Signin extends Component {
       </React.Fragment>
     );
     }
+    //si no esta logueado pero si tiene una cuenta entonces lo mande al login
     else if(!this.state.logueado && this.state.signup){
+      console.log("2");
       return(
         <SignUp/>
       );
     }
-    else if(this.state.logueado && this.state.signup){
-        <Page         
-        logueado={this.state.persona.logueado}          
-        nombre={this.state.persona.nombre}
-        foto={this.state.persona.foto}
-        apellido={this.state.persona.apellido}
-        rol={this.state.persona.tipousuario}
-        password={this.state.persona.password}
-        citas={this.state.persona.citas}
-        id={this.state.persona._id}/>
-    }
   }
+  //este es como un addeventlistener para la imagen para pasarla a base 64 
   _onChange = (e) => {
     var objetolocalcamisa = new Object();
     objetolocalcamisa = this.state.persona;
@@ -217,7 +213,9 @@ class Signin extends Component {
   ingresarUsuario = () => {
     // With all properties
     var objetolocal = this.state.persona;
+    console.log(objetolocal);
     // const Url = 'https://kongzilla.herokuapp.com/api/guardarpersona';
+    // aqui se construyen todas las variables para poder pasarlas al fetch y que el request sea exitoso
     const Url = "http://localhost:8880/api/nuevoUsuario";
     const requestMetadata = {
       method: "PUT",
@@ -234,49 +232,21 @@ class Signin extends Component {
           persona: objetolocal,
         });
         console.log(this.state.persona)
+        //si no da error entonces lo mandamos para que ya pueda hacer su login habitual
         if(this.state.persona != 'Error' || this.state.persona != ''){
              this.state.PERSONAL ={
                 EMAIL: this.state.persona.email,
                 PASSWORD: this.state.persona.password,
             }
-            this.logIn();
+            this.state.logueado = false;
+            this.state.signup = true;
+            // this.logIn();
         }
 
         // this.setState({combosactuales: recipes})
         // alert("Guardado");
-      });
+      }); 
   };
-  logIn(){
-    //aqui esta el error
-    var objetoloca = this.state.PERSONAL;
-    console.log(objetoloca);
-        // const Url = 'https://kongzilla.herokuapp.com/api/guardarpersona';
-        const Url = "http://localhost:8880/api/login";
-        const requestMetadata = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(objetoloca),
-        };
-
-        fetch(Url, requestMetadata)
-        .then((res) => res.json())
-        .then((PERSONAL) => {
-          console.log(PERSONAL);
-            // if (PERSONAL != "Error") {
-                console.log(PERSONAL[0]._id)
-                this.state.persona._id = PERSONAL[0]._id;
-            console.log(this.state.persona);
-            // }
-
-            if (this.state.persona !== "Error") {
-                this.setState({logueado: true,})
-            } 
-
-            // this.setState({combosactuales: recipes})
-        });
-    };
 }
 
 export default Signin;
