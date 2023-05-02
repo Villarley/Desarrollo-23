@@ -32,6 +32,7 @@ function Calenddar(props) {
             <div className="containerr">
               <p>Tienes una cita!</p>
               <p>Es el dia: {appointments.citas.fecha}</p>
+              <p>El tipo de licencia es: {appointments.citas.tipodeprueba}</p>
               <p>Su cita es en la sede de {appointments.citas.lugar}:</p>
               {appointments.citas.lugar == "Paso ancho" ? (
                 <a
