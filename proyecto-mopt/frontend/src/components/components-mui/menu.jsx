@@ -452,26 +452,26 @@ function ResponsiveAppBar(props) {
             onChange={(evt) => actualizardatos(evt)}
           />
           <TextField
-            id="nombre"
+            id="apellido"
             className="input"
-            value={persona.nombre}
-            label="nombre"
+            value={persona.apellido}
+            label="apellido"
             variant="outlined"
             onChange={(evt) => actualizardatos(evt)}
           />
           <TextField
-            id="nombre"
+            id="email"
             className="input"
-            value={persona.nombre}
-            label="nombre"
+            value={persona.email}
+            label="email"
             variant="outlined"
             onChange={(evt) => actualizardatos(evt)}
           />
           <TextField
-            id="nombre"
+            id="password"
             className="input"
-            value={persona.nombre}
-            label="nombre"
+            value={persona.password}
+            label="password"
             variant="outlined"
             onChange={(evt) => actualizardatos(evt)}
           />
