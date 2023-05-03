@@ -115,9 +115,9 @@ body{
   .car{
     margin-top: -10vh;
     display: flex;
-    margin-left: 95vh;
-    height: 800px;
-    width: 800px;
+    margin-left: 85vh;
+    height: 600px;
+    width: 700px;
   }
   .car img {
     animation: up-down 2s ease-in-out infinite;
@@ -125,13 +125,13 @@ body{
   
   @keyframes up-down {
     0% {
-      transform: translateY(0px);
+      transform: translateX(0px);
     }
     50% {
-      transform: translateY(-20px);
+      transform: translateX(-20px);
     }
     100% {
-      transform: translateY(0px);
+      transform: translateX(0px);
     }
   }
   /* .car img {

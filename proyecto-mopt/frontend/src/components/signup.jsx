@@ -195,7 +195,7 @@ class SignUp extends Component {
         // }
 
         if (this.state.PERSONA === "Error") {
-          this.setState({ snackbar: true });
+          window. history. back(); 
         } else {
           this.setState({ logueado: true });
         }
