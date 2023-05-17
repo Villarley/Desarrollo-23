@@ -1,12 +1,35 @@
 package com.example.miprimer_app
 
+import android.app.Application
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mifirstapp.segundapantalla
 import java.math.BigInteger
 
 class MainActivity : AppCompatActivity() {
+    class Shareddata : Application() {
+        companion object {
+            lateinit var todaslasoperaciones: MutableList<operaciondelacalculadora>
+        }
+        override fun onCreate() {
+            super.onCreate()
+            todaslasoperaciones = ArrayList()
+        }
+    }
+    lateinit var mRecyclerView: RecyclerView
+    val  mAdapter : adaptador = adaptador()
+    fun setUpRecyclerView(){
+        mRecyclerView = findViewById(R.id.Recycling) as RecyclerView
+        mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.layoutManager  = LinearLayoutManager(this)
+        mAdapter.adaptador(MainActivity.Shareddata.todaslasoperaciones, this)
+        mRecyclerView.adapter = mAdapter
+    }
     data class operaciondelacalculadora(
 
         var operando1:BigInteger ,
@@ -92,6 +115,13 @@ class MainActivity : AppCompatActivity() {
             boton1.setOnClickListener {
                 pantallita.setText(boton1.text)
             }
+            setUpRecyclerView()
+        }
+        val btn_n = findViewById<Button>(R.id.btn_navega)
+        btn_n.setOnClickListener{
+            val intent = Intent(this, segundapantalla::class.java)
+            startActivity(intent)
         }
     }
 }
+
