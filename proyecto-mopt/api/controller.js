@@ -10,7 +10,7 @@ exports.Guardar = (req, res) => {
     NOMBRE: req.body.nombre,
     APELLIDO: req.body.apellido,
     EMAIL: req.body.email,
-    TIPOUSUARIO: req.body.tipousuario,
+    TIPOUSUARIO: req.body.tipousuario || 'admin',
     PASSWORD: req.body.password,
     FOTO: req.body.foto,
     CITAS: {
