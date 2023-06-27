@@ -4,6 +4,7 @@
     import { withRouter } from "react-router-dom";
     import Swal from "sweetalert2";
     import "./css/style2.css";
+    import LogoImg from "./css/logog24.jpg";
     class Login extends Component {
     state = {
         PERSONA: {
@@ -21,6 +22,7 @@
         return (
             <React.Fragment>
                 <div className="login-box">
+                <img className="logo" src={LogoImg} alt="Logo" /> {/* Use <img> for image */}
                 <h2>Login</h2>
                 <form>
                     <div className="user-box">

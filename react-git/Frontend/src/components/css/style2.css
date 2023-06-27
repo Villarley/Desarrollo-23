@@ -9,9 +9,14 @@ html {
     background: linear-gradient(#141e30, #243b55); */
     background-color: #fff;
   }
-  
+  .logo{
+    margin: auto;
+    height: 250px;
+    width: 250px;
+  }
   .login-box {
     position: absolute;
+    display: grid;
     top: 50%;
     left: 50%;
     width: 400px;
